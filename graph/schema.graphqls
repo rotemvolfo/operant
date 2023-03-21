@@ -1,0 +1,27 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Service {
+  userID: String!
+  name: String!
+  region: String!
+  metrics: [Metric]
+}
+
+type Metric {
+  name: String!
+  highTreshold: Int!
+  lowTreshold: Int!
+  current: Int!
+  serviceId: String!
+}
+
+type Query {
+  GetMetricsByUser(userId: String!): [Metric!]
+  GetMetricsByUserFilterByTreshold(
+    userId: String!
+    highTreshold: Int!
+    lowTreshold: Int!
+  ): [Metric!]
+}
