@@ -14,18 +14,6 @@ type Metric struct {
 	ServiceId string
 }
 
-/*
-SELECT A.`first_name` , A.`last_name` , B.`title`
-FROM `members`AS A
-INNER JOIN `movies` AS B
-ON B.`id` = A.`movie_id`
-
-SELECT M.*
-FROM `Metrics`AS M
-INNER JOIN `Services` AS S
-ON M.`user_id` = S.`user_id`
-*/
-
 func GetMetricsByUser(userID string) []Metric {
 	//stmt, err := database.Db.Prepare("select user_id from Services where user_id=? ;")
 	stmt, err := database.Db.Prepare("SELECT M.* FROM `Metrics`AS M INNER JOIN `Services` AS S ON M.`service_id` = S.`service_id` where S.`user_id`=? ;")
